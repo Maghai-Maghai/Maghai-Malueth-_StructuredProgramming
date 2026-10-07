@@ -1,14 +1,29 @@
 #include <stdio.h>
-#define PI 3.14159
 
 int main()
 {
-    float radius, surfaceArea;
+    int num1, num2;
+    int sum, difference, product, modulus;
+    float quotient;
+    printf("Enter two integers separated by a space: ");
+    scanf("%d %d", &num1, &num2);
+    sum = num1 + num2;
+    difference = num1 - num2;
+    product = num1 * num2;
+    printf("\n---Results---\n");
+    printf("Addition (%d + %d) = %d\n" , num1, num2, sum);
+    printf("Substraction (%d - %d) = %d\n", num1, num2, difference);
+    printf("Multiplication (%d * %d) = %d\n", num1,num2, product);
+    if(num2 != 0) {
+        quotient = (float)num1 / num2;
+        modulus = num1 % num2;
 
-    printf("Enter the radius of the sphere: ");
-    scanf("%f", &radius);
-    surfaceArea = 4 * PI * radius * radius;
-    printf("The surface area of the sphere is: %.2f\n", surfaceArea);
-
+        printf("Division (%d / %d) = %f\n", num1, num2, quotient);
+        printf("Modulus (%d %% %d) = %d\n", num1, num2, modulus);
+    }
+     {
+    printf("Division (%d / %d) = Undefined (Cannot divide by zero) \n", num1, num2);
+    printf("Modulus (%d %% %d) = Undefined (Cannot divide by zero)\n", num1, num2);
+    }
     return 0;
 }
