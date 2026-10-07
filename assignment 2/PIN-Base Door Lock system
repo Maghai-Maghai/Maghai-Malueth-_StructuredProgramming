@@ -1,0 +1,89 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#ifdef _WIN32
+#include<windows.h>
+#else
+#include <unistd.h>
+
+#endif
+void delay_one_second()
+{
+     #ifdef _WIN32
+    #else
+        sleep(15);
+    #endif
+}
+
+int main() {
+    const char correctPIN[] = "1234";
+    char enteredPIN[50];
+    int attempts = 3;
+    int authenticated = 0;
+    int choice;
+
+    printf("=== Electronic Door Lock System ===\n");
+    while (attempts > 0) {
+        printf("\nEnter 4-digit numerical PIN: ");
+        scanf("%s", enteredPIN);
+
+        int pinLength = strlen(enteredPIN);
+        if (pinLength < 4) {
+            printf("PIN is too short (must be 4 digits)\n");
+        } else if (pinLength > 4) {
+            printf("PIN is too long (must be 4 digits)\n");
+        } else {
+            printf("PIN is exactly 4 digits\n");
+        }
+        if (strcmp(enteredPIN, correctPIN) == 0) {
+            authenticated = 1;
+            break;
+        } else {
+            attempts--;
+            printf("Incorrect PIN.");
+            if (attempts > 0) {
+                printf(" Remaining attempts: %d\n", attempts);
+            } else {
+                printf("\n");
+            }
+        }
+    }
+    if (authenticated) {
+        printf("\n=== Device Menu ===\n");
+        printf("1. Open Door\n");
+        printf("2. Change Username\n");
+        printf("3. Change PIN\n");
+        printf("4. Exit\n");
+        printf("Choose an option: ");
+        scanf("%d", &choice);
+        switch(choice) {
+            case 1:
+                printf("Access granted. Door unlocked.\n");
+                break;
+            case 2:
+                printf("Change username feature coming soon.\n");
+                break;
+            case 3:
+                printf("Change PIN feature coming soon.\n");
+                break;
+            case 4:
+                printf("Exiting system.\n");
+                break;
+            default:
+                printf("Invalid option! Please try again.\n");
+                break;
+        }
+    } else {
+        printf("\nSystem locked! Wait for 5 seconds...\n");
+        for (int i = 5; i >= 1; i--) {
+            printf("%d...\n", i);
+            fflush(stdout);
+            delay_one_second();
+        }
+
+        printf("You can try again now.\n");
+    }
+
+    return 0;
+}
