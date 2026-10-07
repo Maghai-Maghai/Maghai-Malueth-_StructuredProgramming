@@ -1,0 +1,46 @@
+#include <stdio.h>
+
+int main()
+{
+     int n, i;
+    int regNo;
+    char name[50];
+    int marks;
+    char grade;
+
+    printf("Enter the number of students (N): ");
+    scanf("%d", &n);
+
+    for (i = 0; i < n; i++) {
+        printf("\n--- Enter details for student %d ---\n", i + 1);
+        printf("Registration number: ");
+        scanf("%d", &regNo);
+        printf("Name: ");
+        scanf("%s", name);
+        printf("Marks (0-100): ");
+        scanf("%d", &marks);
+        if (marks >= 70 && marks <= 100) {
+            grade = 'A';
+        } else if (marks >= 60 && marks <= 69) {
+            grade = 'B';
+        } else if (marks >= 50 && marks <= 59) {
+            grade = 'C';
+        } else if (marks >= 40 && marks <= 49) {
+            grade = 'D';
+        } else {
+            grade = 'F';
+        }
+        printf("\nSTUDENT INFORMATION\n");
+        printf("Registration No: %d\n", regNo);
+        printf("Name: %s\n", name);
+        printf("Marks: %d\n", marks);
+        printf("Grade: %c\n", grade);
+        if (marks >= 40) {
+            printf("Status: Pass\n");
+        } else {
+            printf("Status: Fail\n");
+        }
+    }
+
+    return 0;
+}
